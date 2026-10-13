@@ -1,0 +1,259 @@
+:root{
+  --bg-deep:#1c1030;
+  --bg-deep2:#2d1b4e;
+  --pink:#ff5d8f;
+  --pink-soft:#ff86ab;
+  --gold:#ffc857;
+  --mint:#6bcb9a;
+  --cream:#fff3e2;
+  --purple-light:#b185db;
+  --shadow-soft:0 10px 30px rgba(0,0,0,.35);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Cairo',sans-serif;
+  background:radial-gradient(circle at 20% 10%, var(--bg-deep2), var(--bg-deep) 55%);
+  color:var(--cream);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* ============ خلفية البالونات ============ */
+.balloons{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.balloon{
+  position:absolute;
+  bottom:-10%;
+  font-size:clamp(2rem, 6vw, 3.4rem);
+  opacity:.28;
+  animation:floatUp linear infinite;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.3));
+}
+.b1{left:6%;  animation-duration:16s; animation-delay:0s;}
+.b2{left:22%; animation-duration:21s; animation-delay:2s;}
+.b3{left:48%; animation-duration:18s; animation-delay:5s;}
+.b4{left:70%; animation-duration:24s; animation-delay:1s;}
+.b5{left:88%; animation-duration:19s; animation-delay:4s;}
+
+@keyframes floatUp{
+  0%{ transform:translateY(0) rotate(-4deg); }
+  50%{ transform:translateY(-55vh) rotate(4deg); }
+  100%{ transform:translateY(-115vh) rotate(-4deg); }
+}
+
+/* ============ الكونفيتي ============ */
+.confetti-layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+  overflow:hidden;
+}
+.confetti-piece{
+  position:absolute;
+  top:-5%;
+  width:9px;
+  height:14px;
+  opacity:0;
+  border-radius:2px;
+  animation:confettiFall 3.6s ease-in forwards;
+}
+@keyframes confettiFall{
+  0%{ opacity:1; transform:translateY(0) rotate(0deg); }
+  100%{ opacity:.9; transform:translateY(105vh) rotate(540deg); }
+}
+
+/* ============ عام: المراحل ============ */
+.stage{
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6vh 6vw;
+  text-align:center;
+}
+.stage-inner{
+  max-width:640px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.4rem;
+}
+
+/* كل المراحل مخفية افتراضيًا، وبنظهر بس المرحلة الحالية */
+.stage-1, .stage-2, .stage-3{ display:none; }
+
+body[data-stage="1"] .stage-1{ display:flex; }
+body[data-stage="2"] .stage-2{ display:block; }
+body[data-stage="3"] .stage-3{ display:flex; }
+
+/* ============ Stage 1 ============ */
+.eyebrow{
+  font-size:clamp(.9rem, 2.4vw, 1.05rem);
+  color:var(--purple-light);
+  font-weight:600;
+  letter-spacing:.5px;
+}
+
+.prompt-text{
+  font-family:'Lalezar',sans-serif;
+  font-weight:400;
+  font-size:clamp(1.8rem, 6vw, 3rem);
+  line-height:1.4;
+  color:var(--gold);
+  transition:transform .25s ease;
+  animation:popIn .5s ease;
+}
+
+@keyframes popIn{
+  0%{ transform:scale(.85); opacity:0; }
+  100%{ transform:scale(1); opacity:1; }
+}
+
+.buttons-row{
+  display:flex;
+  gap:1.2rem;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:.5rem;
+}
+
+.btn{
+  font-family:'Cairo',sans-serif;
+  font-weight:700;
+  font-size:clamp(1rem, 2.6vw, 1.15rem);
+  padding:.9rem 1.9rem;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+  color:var(--bg-deep);
+  box-shadow:var(--shadow-soft);
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn:hover{ transform:translateY(-3px); filter:brightness(1.05); }
+.btn:active{ transform:translateY(0) scale(.97); }
+.btn:focus-visible{ outline:3px solid var(--cream); outline-offset:3px; }
+
+.btn-left{ background:linear-gradient(135deg, var(--pink-soft), var(--pink)); }
+.btn-right{ background:linear-gradient(135deg, var(--gold), #ffb648); }
+.btn-reveal{ background:linear-gradient(135deg, var(--mint), #4fb787); margin-top:1.5rem; }
+
+.hint{
+  min-height:1.4em;
+  font-size:.95rem;
+  color:var(--purple-light);
+}
+
+/* شعبطة بسيطة لما تدوس الزرار الشمال */
+.shake{ animation:shake .45s ease; }
+@keyframes shake{
+  0%,100%{ transform:translateX(0); }
+  20%{ transform:translateX(-8px); }
+  40%{ transform:translateX(8px); }
+  60%{ transform:translateX(-6px); }
+  80%{ transform:translateX(6px); }
+}
+
+/* ============ Stage 2 ============ */
+.look-block{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1.2rem;
+  padding:6vh 6vw;
+  text-align:center;
+}
+
+.look-text{
+  font-family:'Lalezar',sans-serif;
+  font-weight:400;
+  font-size:clamp(2rem, 7vw, 3.4rem);
+  color:var(--pink-soft);
+  opacity:0;
+  animation:fadeUp .8s ease forwards;
+}
+
+.look-up .look-text{ animation-delay:.15s; }
+.look-down .look-text{ animation-delay:.15s; }
+
+@keyframes fadeUp{
+  0%{ opacity:0; transform:translateY(24px); }
+  100%{ opacity:1; transform:translateY(0); }
+}
+
+.scroll-hint{
+  font-size:1rem;
+  color:var(--cream);
+  opacity:.75;
+}
+
+.scroll-arrow{
+  font-size:2.2rem;
+  color:var(--gold);
+  animation:bounce 1.6s ease-in-out infinite;
+}
+@keyframes bounce{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(14px); }
+}
+
+/* ============ Stage 3 ============ */
+.final-title{
+  font-family:'Lalezar',sans-serif;
+  font-weight:400;
+  font-size:clamp(2.1rem, 7vw, 3.6rem);
+  color:var(--gold);
+  animation:popIn .7s ease;
+}
+
+.video-wrap{
+  width:min(90vw, 640px);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+  border:3px solid var(--pink);
+  animation:popIn .8s ease .1s backwards;
+}
+
+.video-wrap video{
+  width:100%;
+  display:block;
+  background:#000;
+}
+
+.final-sub{
+  font-size:clamp(1rem, 2.6vw, 1.2rem);
+  color:var(--purple-light);
+  max-width:520px;
+  animation:fadeUp 1s ease .2s backwards;
+}
+
+/* ============ الموبايل ============ */
+@media (max-width:480px){
+  .buttons-row{ gap:.8rem; }
+  .btn{ padding:.8rem 1.4rem; }
+  .stage{ padding:8vh 6vw; }
+}
+
+/* ============ احترام تقليل الحركة ============ */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}

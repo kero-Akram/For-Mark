@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>For Mark </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-stage="1">
+
+  <!-- خلفية بالونات فلوتنج -->
+  <div class="balloons" aria-hidden="true">
+    <span class="balloon b1">🎈</span>
+    <span class="balloon b2">🎈</span>
+    <span class="balloon b3">🎈</span>
+    <span class="balloon b4">🎈</span>
+    <span class="balloon b5">🎈</span>
+  </div>
+
+  <!-- كونفيتي هيتولد بالجافاسكريبت -->
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <!-- ============== STAGE 1: الزرار الشمال / اليمين ============== -->
+  <section class="stage stage-1" id="stage1">
+    <div class="stage-inner">
+      <p class="eyebrow">خليك معايا للاخر 😅</p>
+      <h1 class="prompt-text" id="promptText">دوس ع الزرار الشمال</h1>
+
+      <div class="buttons-row">
+        <button class="btn btn-right" id="btnRight" type="button">الزرار اليمين</button>
+        <button class="btn btn-left" id="btnLeft" type="button">الزرار الشمال</button>
+        
+      </div>
+
+      <p class="hint" id="hintText">&nbsp;</p>
+    </div>
+  </section>
+
+  <!-- ============== STAGE 2: بصي فوق / بصي تحت ============== -->
+  <section class="stage stage-2" id="stage2">
+
+    <div class="look-block look-up">
+      <p class="scroll-hint">زحلق لتحت شوية 👇</p>
+      <h2 class="look-text">بص فوق ☝️</h2>
+      <div class="scroll-arrow">⌄</div>
+    </div>
+
+    <div class="look-block look-down">
+      <h2 class="look-text">بص تحت 👇</h2>
+      <button class="btn btn-reveal" id="btnReveal" type="button">دوس هنا 🎬</button>
+    </div>
+
+  </section>
+
+  <!-- ============== STAGE 3: الفيديو والرسالة ============== -->
+  <section class="stage stage-3" id="stage3">
+    <div class="stage-inner">
+      <h2 class="final-title">كل سنة وانت طيب 🎂💕</h2>
+
+      <div class="video-wrap">
+        <!--
+          ============================================
+          حط هنا مسار الفيديو بتاعك بدل placeholder.mp4
+          مثال: <source src="video/happy-birthday.mp4" type="video/mp4">
+          لازم ترفعي ملف الفيديو جوا فولدر اسمه "video"
+          جنب ملف index.html في الـ GitHub repo
+          ============================================
+        -->
+        <video id="bdayVideo" controls playsinline>
+          <source src="video/happy-birthday.mp4" type="video/mp4">
+          المتصفح بتاعك مش بيدعم تشغيل الفيديو.
+        </video>
+      </div>
+
+      <p class="final-sub">كل سنة و انت طيب و عقبال سنين كتير حلوة معانا و عيلتك و احلي حد يكمل 18 دة ولا اية ... انت كدا قد عيالي ع فكرة 😂❤</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
